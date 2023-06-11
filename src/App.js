@@ -9,27 +9,29 @@ function App(props){
   return(
     <>
     <h1>
-      Store value : 
+      Store Value = 
       {props.count}
     </h1>
     {/* <Child/> */}
-    <button onClick={()=>props.inc()}>Inc</button>
-    <button onClick={()=>props.dec()}>-</button>
+    <button onClick={()=>props.inc()}>Increment</button>
+    <button onClick={()=>props.dec()}>Decrement</button>
     <AddUser/>
     </>
   )
 }
 
 
-//data get 
+//data Get 
 const mapStateToProps=(state)=>({
   count:state.count,
-  email:state.user
+  // email:state.user
+  // mainuser: state.user
 })
 
 const mapdispatchToProps=(dispatch)=>({
   inc:()=>dispatch(increment()),
   dec:()=>dispatch(decrement())
+
 })
 
 // export default App;
