@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import { add_inc, decrement, del_inc, increment } from "./Config/Store/Action/Index.js";
+import AddUser from "./Components/AddUser.jsx";
+// import Child from "./Child";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props){
+  console.log(props)
+  return(
+    <>
+    <h1>
+      Store value : 
+      {props.count}
+    </h1>
+    {/* <Child/> */}
+    <button onClick={()=>props.inc()}>Inc</button>
+    <button onClick={()=>props.dec()}>-</button>
+    <AddUser/>
+    </>
+  )
 }
 
-export default App;
+
+//data get 
+const mapStateToProps=(state)=>({
+  count:state.count,
+  email:state.user
+})
+
+const mapdispatchToProps=(dispatch)=>({
+  inc:()=>dispatch(increment()),
+  dec:()=>dispatch(decrement())
+})
+
+// export default App;
+export default connect(mapStateToProps,mapdispatchToProps)(App)
